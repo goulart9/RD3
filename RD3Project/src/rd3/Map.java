@@ -13,8 +13,6 @@ public class Map {
 		numRows = rows;
 		map = new int[3][numRows];
 		obstacles = new int[3];
-		
-		populateArray();
 	}
 
 	public void step() {

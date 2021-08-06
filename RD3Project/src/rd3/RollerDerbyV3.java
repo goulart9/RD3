@@ -17,22 +17,21 @@ public class RollerDerbyV3 implements KeyListener{
 	}
 	
 	public static void main(String[] args) {
-//		RollerDerbyV3 rd3 = new RollerDerbyV3();
-//		int lastSecond = LocalTime.now().getSecond();
-//		int currentSecond = 0;
-//
-//		while(true) {
-//			//check if its time to step the map
-//			currentSecond = LocalTime.now().getSecond();
-//			if(lastSecond != currentSecond) {
-//				System.out.println(LocalTime.now().getSecond());
-//				//gameMap.step();
-//				//gameMap.prettyPrint();
-//				lastSecond = currentSecond;
-//			}
-//			
-//		}
-		Map m = new Map(5);
+		RollerDerbyV3 rd3 = new RollerDerbyV3();
+		int lastSecond = LocalTime.now().getSecond();
+		int currentSecond = 0;
+
+		while(true) {
+			//check if its time to step the map
+			currentSecond = LocalTime.now().getSecond();
+			if(lastSecond != currentSecond) {
+				System.out.println(LocalTime.now().getSecond());
+				//gameMap.step();
+				//gameMap.prettyPrint();
+				lastSecond = currentSecond;
+			}
+			
+		}
 	}
 	
 	public void keyPressed(KeyEvent e) {
