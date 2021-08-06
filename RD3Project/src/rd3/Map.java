@@ -36,6 +36,7 @@ public class Map {
 			map[1][0] = newRow[1];
 			map[2][0] = newRow[2];
 		}
+		tick++;
 	}
 
 	private void populateArray() {
@@ -76,16 +77,6 @@ public class Map {
 	private boolean checkContainsEmpty(int[] arr) {
 		for (int k : arr) {
 			if (k == 0) {
-				return true;
-			}
-		}
-		
-		return false;
-	}
-	
-	private boolean checkContainsObstacle(int[] arr) {
-		for (int k : arr) {
-			if (k == 1 || k == 2 || k == 3) {
 				return true;
 			}
 		}
