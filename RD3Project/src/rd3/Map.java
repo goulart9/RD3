@@ -6,7 +6,7 @@ public class Map {
 	private int carColumn;
 	private int numRows;
 	private int[][] map;
-	private int[] obstacles, arr;
+	private int[] obstacles;
 	private final int EMPTY = 0, OIL = 1, POTHOLE = 2, CONE = 3;
 
 	public Map(int rows) {
@@ -38,33 +38,25 @@ public class Map {
 		}
 		tick++;
 	}
-
-	private void populateArray() {
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < numRows; j++) {
-				map[i][j] = 0;
-			}
-		}
-	}
 	
 	private int[] addRandomObstacles() {
 		for (int i = 0; i < 3; i++) {
 			int rand = (int) (Math.random()*100);
 			
 			if (rand >= 0 && rand <= 70) {
-				rand = 0;
+				rand = EMPTY;
 			}
 			
 			else if (rand >= 71 && rand <= 80) {
-				rand = 1;
+				rand = OIL;
 			}
 			
 			else if (rand >= 81 && rand <= 90) {
-				rand = 2;
+				rand = POTHOLE;
 			}
 			
 			else if (rand >= 91 && rand <= 100) {
-				rand = 3;
+				rand = CONE;
 			}
 			
 			obstacles[i] = rand;
@@ -76,9 +68,7 @@ public class Map {
 	
 	private boolean checkContainsEmpty(int[] arr) {
 		for (int k : arr) {
-			if (k == 0) {
-				return true;
-			}
+			if (k == 0) return true;
 		}
 		
 		return false;
