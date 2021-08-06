@@ -15,10 +15,6 @@ public class Map {
 		numRows = rows;
 		map = new int[3][numRows];
 		obstacles = new int[3];
-		//prevObstacles = obstacles;
-		populateArray();
-		for (int i = 0; i < 10; i++)
-			addRandomObstacles();
 	}
 
 	public void step() {
