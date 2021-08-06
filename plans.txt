@@ -1,0 +1,24 @@
+class map
+	int carColumn
+	arr[][] map
+	enum ROAD_STATE { EMPTY, OIL, POTHOLE, CONE }
+
+	step(arr)
+		//shift everything down
+		//checkGameOver()
+
+	bool gameOver()
+	setcarColumn(int col) //called from rd3 class given kb input
+	prettyPrint();
+
+class RollerDerbyV3
+	time t = systemtime.seconds
+	keyevent keyPressed;
+	map gameMap
+	
+	void main()
+		//while !map.gameOver()
+			//check if its time to tick the board
+			if(t%5==0){gameMap.step}	
+			//listen for keyboard input
+			listener.getkeypress
