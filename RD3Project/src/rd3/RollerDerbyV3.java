@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 
 public class RollerDerbyV3 implements KeyListener{
 	JFrame frame;
-	//Map gameMap = new Map(8);
+	Map gameMap = new Map(8);
 	RollerDerbyV3() {
 		frame = new JFrame("Roller Derby V3");
 		frame.addKeyListener(this);
@@ -21,13 +21,13 @@ public class RollerDerbyV3 implements KeyListener{
 		int lastSecond = LocalTime.now().getSecond();
 		int currentSecond = 0;
 
-		while(true) {
+		while(!rd3.gameMap.gameOver()) {
 			//check if its time to step the map
 			currentSecond = LocalTime.now().getSecond();
 			if(lastSecond != currentSecond) {
 				System.out.println(LocalTime.now().getSecond());
-				//gameMap.step();
-				//gameMap.prettyPrint();
+				rd3.gameMap.step();
+				rd3.gameMap.prettyPrint();
 				lastSecond = currentSecond;
 			}
 			
@@ -37,10 +37,10 @@ public class RollerDerbyV3 implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		int code = e.getKeyCode();
 		if(code == KeyEvent.VK_RIGHT) {
-			//gameMap.rightTurn();
+			gameMap.rightTurn();
 		}
 		if(code == KeyEvent.VK_LEFT) {
-			//gameMap.leftTurn();
+			gameMap.leftTurn();
 		}
 	}
 	public void keyTyped(KeyEvent e) {}

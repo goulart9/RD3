@@ -2,6 +2,7 @@ package rd3;
 
 public class Map {
 
+	private int tick;
 	private int carColumn;
 	private int numRows;
 	private int[][] map;
@@ -9,6 +10,7 @@ public class Map {
 	private final int EMPTY = 0, OIL = 1, POTHOLE = 2, CONE = 3;
 
 	public Map(int rows) {
+		tick = 0;
 		carColumn = 1;
 		numRows = rows;
 		map = new int[3][numRows];
@@ -16,8 +18,24 @@ public class Map {
 	}
 
 	public void step() {
-		// check gameOver()
 		// shift everything down
+		for(int i = numRows - 2; i >= 0; --i) {
+			map[0][i+1] = map[0][i];
+			map[1][i+1] = map[1][i];
+			map[2][i+1] = map[2][i];
+		}
+		//add new layer
+		if(tick%2 == 0) {
+			map[0][0] = 0;
+			map[1][0] = 0;
+			map[2][0] = 0;
+		}
+		else {
+			int[] newRow = addRandomObstacles();
+			map[0][0] = newRow[0];
+			map[1][0] = newRow[1];
+			map[2][0] = newRow[2];
+		}
 	}
 
 	private void populateArray() {
@@ -76,7 +94,7 @@ public class Map {
 	}
 
 	public boolean gameOver() {
-		return false;
+		return map[carColumn][numRows-1] != 0;
 	}
 
 	public void setCarColumn(int col) {
@@ -84,6 +102,32 @@ public class Map {
 	}
 
 	void prettyPrint() {
-
+		for(int row = 0; row < numRows; row++) {
+			for(int col = 0; col < 3; col++)
+			{
+				if(row == numRows - 1 && col == carColumn) {
+					System.out.print("$");
+				}
+				else {
+					System.out.print(map[col][row]);
+				}
+			}
+			System.out.print("\n");
+		}
+		System.out.print("\n\n");
+	}
+	
+	void rightTurn() {
+		//move one lane to the right if possible
+		if(carColumn != 2) {
+			++carColumn;
+		}
+	}
+	
+	void leftTurn() {
+		//move one lane to the left if possible
+		if(carColumn != 0) {
+			--carColumn;
+		}
 	}
 }
