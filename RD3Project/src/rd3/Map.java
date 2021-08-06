@@ -5,7 +5,7 @@ public class Map {
 	private int carColumn;
 	private int numRows;
 	private int[][] map;
-	private int[] obstacles, prevObstacles;
+	private int[] obstacles, arr;
 	private final int EMPTY = 0, OIL = 1, POTHOLE = 2, CONE = 3;
 
 	public Map(int rows) {
@@ -13,10 +13,8 @@ public class Map {
 		numRows = rows;
 		map = new int[3][numRows];
 		obstacles = new int[3];
-		//prevObstacles = obstacles;
 		
-		for (int i = 0; i < 10; i++)
-			addRandomObstacles();
+		populateArray();
 	}
 
 	public void step() {
@@ -32,10 +30,8 @@ public class Map {
 		}
 	}
 	
-	private void addRandomObstacles() {
-		
-		
-		for (int i =0; i < 3; i++) {
+	private int[] addRandomObstacles() {
+		for (int i = 0; i < 3; i++) {
 			int rand = (int) (Math.random()*100);
 			
 			if (rand >= 0 && rand <= 70) {
@@ -54,38 +50,11 @@ public class Map {
 				rand = 3;
 			}
 			
-			else {
-				System.out.printf("FUCKED\n");
-			}
-			
 			obstacles[i] = rand;
 		}
 		
-		if (!checkContainsEmpty(obstacles)) {
-			addRandomObstacles();
-		}
-		
-//		if (!checkContainsObstacle(prevObstacles)) {
-//			for (int i = 0; i < 3; i++) {
-//				obstacles[i] = 0;
-//			}
-//		}
-		
-		for (int l : obstacles) {
-			System.out.printf("%d", l);
-		}
-		System.out.printf("\n");
-		if (prevObstacles != null) {
-			System.out.print("Prev: ");
-			for (int l : prevObstacles) {
-				System.out.printf("%d", l);
-			}
-			System.out.printf("\n");
-		}
-		
-		
-		
-		prevObstacles = obstacles;
+		if (!checkContainsEmpty(obstacles)) addRandomObstacles();
+		return obstacles;
 	}
 	
 	private boolean checkContainsEmpty(int[] arr) {
